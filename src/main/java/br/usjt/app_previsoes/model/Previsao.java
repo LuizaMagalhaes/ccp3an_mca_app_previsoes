@@ -1,49 +1,53 @@
 package br.usjt.app_previsoes.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import java.util.Date;
-
 @Entity
+@Table(name = "Previsoes")
 public class Previsao implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name="DIASEMANA")
-	private String diaSemana;
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "ID_DIASEMANA")
+	private DiaSemana diaSemana;
 
-	@Column(name="TEMPMIN")
+	@Column(name = "TEMPMIN")
 	private Double tempMin;
 
-	@Column(name="TEMPMAX")
+	@Column(name = "TEMPMAX")
 	private Double tempMax;
 
-	@Column(name="UMIDADE")
+	@Column(name = "UMIDADE")
 	private int umidade;
 
-	@Column(name="DESCRICAO")
+	@Column(name = "DESCRICAO")
 	private String descricao;
 
-	@Column(name="DATAHORA")
+	@Column(name = "DATAHORA")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataHora;
 
-	@Column(name="LATITUDE")
-	private Double latitude;
-
-	@Column(name="LONGITUDE")
+	@Column(name = "LONGITUDE")
 	private Double longitude;
+
+	@Column(name = "LATITUDE")
+	private Double latitude;
 
 
 	public Long getId() {
@@ -54,11 +58,11 @@ public class Previsao implements Serializable {
 		this.id = id;
 	}
 
-	public String getDiaSemana() {
+	public DiaSemana getDiaSemana() {
 		return diaSemana;
 	}
 
-	public void setDiaSemana(String diaSemana) {
+	public void setDiaSemana(DiaSemana diaSemana) {
 		this.diaSemana = diaSemana;
 	}
 
@@ -93,6 +97,7 @@ public class Previsao implements Serializable {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
 	public Date getDataHora() {
 		return dataHora;
 	}
