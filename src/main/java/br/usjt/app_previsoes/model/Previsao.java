@@ -43,12 +43,9 @@ public class Previsao implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataHora;
 
-	@Column(name = "LONGITUDE")
-	private Double longitude;
-
-	@Column(name = "LATITUDE")
-	private Double latitude;
-
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "ID_CIDADE")
+	private Cidade cidade;
 
 	public Long getId() {
 		return id;
@@ -106,19 +103,11 @@ public class Previsao implements Serializable {
 		this.dataHora = dataHora;
 	}
 
-	public Double getLatitude() {
-		return latitude;
+	public Cidade getCidade() {
+		return cidade;
 	}
 
-	public void setLatitude(Double latitude) {
-		this.latitude = latitude;
-	}
-
-	public Double getLongitude() {
-		return longitude;
-	}
-
-	public void setLongitude(Double longitude) {
-		this.longitude = longitude;
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
 	}
 }

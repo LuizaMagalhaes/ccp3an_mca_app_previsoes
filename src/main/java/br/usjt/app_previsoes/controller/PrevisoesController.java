@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import br.usjt.app_previsoes.model.Previsao;
 import br.usjt.app_previsoes.service.DiasSemanaService;
 import br.usjt.app_previsoes.service.PrevisoesService;
+import br.usjt.app_previsoes.service.CidadesService;
 
 @Controller
 public class PrevisoesController {
@@ -19,6 +20,9 @@ public class PrevisoesController {
 	@Autowired
 	private DiasSemanaService diasService;
 
+	@Autowired
+	private CidadesService cidadesService;
+
 	@GetMapping("/Previsoes")
 	public ModelAndView listarPrevisoes() {
 		ModelAndView mv = new ModelAndView("Previsoes");
@@ -26,6 +30,7 @@ public class PrevisoesController {
 		mv.addObject(new Previsao());
 		mv.addObject("previsoes", previsoesService.listarTodos());
 		mv.addObject("diasSemana", diasService.listarTodos());
+		mv.addObject("cidades", cidadesService.listarTodos());
 
 		return mv;
 	}
